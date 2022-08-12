@@ -1,0 +1,14 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+#play {
+
+}
+
+.container {
+    text-align: center;
+}
+
+#background {
+    background-image: url(./img/music.gif);
+    background-position: 50% 100%;
+}
