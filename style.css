@@ -1,6 +1,10 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
-#play {
+#play:hover {
+    box-shadow: 3px 3px 3px 3px rgb(152, 115, 15);
+}
+
+#play:focus{
 
 }
 
@@ -11,4 +15,14 @@
 #background {
     background-image: url(./img/music.gif);
     background-position: 50% 100%;
+}
+
+#guess {
+    width: 300px;
+}
+
+section .top-list{
+   position: relative;
+   top: 100px;
+   text-align: center;
 }
