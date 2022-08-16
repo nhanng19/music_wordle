@@ -21,7 +21,8 @@
     width: 300px;
 }
 
-.top-list{
-    text-align: center;
-    
+section .top-list{
+   position: relative;
+   top: 100px;
+   text-align: center;
 }
