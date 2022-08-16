@@ -44,7 +44,7 @@ fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=tayl
 });
 
 
-$('#enter-button').on("click", taylorSwiftBtn)
+$('#enter-button').on("click", taylorSwiftBtn);
 
 function taylorSwiftBtn(){
     if ($('#guess').val() === "Taylor Swift"){
@@ -56,15 +56,15 @@ function taylorSwiftBtn(){
     }else if ($('#guess').val() === "Rihanna"){
         beyonce();
     }else {
-        // fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Taylor%20Swift&format=json&origin=*')
-        // .then(function(response){
-        //     return response.json();
-        // })
-        // .then(function(data){
-        //     console.log(data);
-        //     // return again to put more data for taylor 
-        // })
-        alert('Hi')
+        fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Taylor%20Swift&format=json&origin=*')
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            // return again to put more data for taylor 
+        })
+        
     }
     return
 };
