@@ -1,5 +1,5 @@
 // lastAPI = 3fa1d67efdf9fbda6b5c07411588e640;
-// wikiApi = 238590f9ae27fc5f5c4912e9a9a31901'
+// wikiApi = 238590f9ae27fc5f5c4912e9a9a31901
 
 // http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json'
 // get the top artist api 
@@ -19,6 +19,72 @@ var userInput = $('#guess');
 var enterBtn = $('#enter-button');
 
 userInput = JSON.stringify(userInput);
+
+
+
+var url = "https://en.wikipedia.org/w/api.php"; 
+
+var params = {
+    action: "query",
+    prop: "pageimages",
+    titles: "Taylor Swift",
+    format: "json",
+    piprop: "original",
+
+};
+
+url = url + "?origin=*";
+Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+
+fetch(url)
+    .then(function(response){return response.json();})
+    .then(function(response) {
+        var pages = response.query.pages;
+        console.log(pages)
+        // for (var page in pages) {
+        //     console.log(page.thumbnail);
+            // for (var img of pages[page].thumbnail) {
+            //     console.log(img);
+                // document.querySelector("#img1").src = img.title;
+            // }
+        // }
+    })
+    .catch(function(error){console.log(error);});
+
+// var reader = new FileReader();
+// reader.readAsDataURL(blob);
+// reader.onloadend = function() {
+//     var base64data = reader.result;
+//     console.log(base64data);
+// }
+
+// function blobToBase64(blob) {
+//     return new Promise((resolve, _) => {
+//         const reader = new FileReader();
+//         reader.onloadend = () => resolve(reader.result);
+//         reader.readAsDataURL(blob);
+//     });
+// }
+
+
+
+// fetch(taylorSwiftImg)
+//     .then(response => response.blob())
+//     .then(imageBlob => {
+//         console.log(taylorSwiftImg);
+//         var imageObjecturl = URL.createObjectURL(imageBlob);
+//         console.log(imageObjecturl);
+//         document.querySelector("#img1").src = imageObjecturl;
+//     });
+
+
+
+
+
+
+
+
+
 
 
 $('#play').on('click', function(){
