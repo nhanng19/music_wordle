@@ -163,28 +163,14 @@
 // lastAPI = 3fa1d67efdf9fbda6b5c07411588e640;
 // wikiApi = 238590f9ae27fc5f5c4912e9a9a31901'
 
-// http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json'
-// get the top artist api 
 
-// http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json
-// get top tracks 
-  // if(!firstTrack){
-            //     console.log(firstTrack);
-            // }else{
-            //     console.log("unable to get firstTrack")
-            //     }
-
-// global variable for attempts
-// global variable for song data - artist infor or song info --- click play button fetch info
-
-// fetch one api at one time -- 
-
-
-var artists = ["taylorswift", "justinbieber", "theweekend", "rhianna", "michaeljackson"]
-var artistX= artists[Math.floor(Math.random()*artists.length)];
+// ARRAY OF ARTIST NEED TO MATCH THE NAME IN THE API -- for example if we used harrystyles or taylorswift the answer will be wrong
+var artists = ['the weeknd', 'taylor swift', 'harry styles', 'rihanna', 'beyonce']
+var artistX = artists[Math.floor(Math.random()*artists.length)];
+console.log(artists);
 console.log(artistX);
-var selectedArtists = null
-var topTracks = ['1sadfa', '1231', '12312', '234123', '12342134123']
+// STORE LOCAL DATA FOR USER ATTEMPTS
+
 var userTurn = 0
 
 var playButton = $('#play');
@@ -200,7 +186,9 @@ $('#play').on('click', function(){
     playBtn()
 })
 
+
 function playBtn() {
+    
     fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${artistX}&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json`)
     .then(function(response){
         return response.json();
@@ -208,50 +196,39 @@ function playBtn() {
     .then(function(data){
         console.log(data);
             for (i=0; i<4; i++){
-            var firstTrack = data.toptracks.track[i].name;
-            console.log(firstTrack);
-            
-            trackList[i].innerHTML = firstTrack;
-            console.log(trackList);
-            
+                // var firstTrack = data.toptracks.track[i].name;
+                // console.log(firstTrack);
+                document.getElementById("track" + i).innerHTML = data.toptracks.track[i].name
+                // trackList[i].innerHTML = firstTrack;
+                // console.log(trackList);
             }
-
+            document.getElementById("track1").style.display = "block"
     })
     .catch(error => window.alert("Oops! Something wrong"));
 };
 
 $('#enter-button').on("click", guessBtn)
+// We need to change these functions for when you get the right answer or wrong answer LINE 47-51
+function congratz(){
+    alert("congratz")
+}
+
+function idiot(){
+    alert("you failed to guess the artist")
+}
 
 function guessBtn(){
-    var result = ["Taylor Swift", "Justin Bieber", "The Weeknd", "Rhinna", "Michael Jackson"];
-
-    
-
-
-}
-    // var result = input == selectedArtist
-    // if match display congrats or something
-        // return
-    // if not, 
-            // if userturn+1 == 4
-                // then fetch wikipedia and display wiki to image
-                // return
-            // if userturn == 5
-                // u fail bitch
-                // return 
-            // take hint using user turn send to li, then increase turn by 1
-
-
-
-    
-        // fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Taylor%20Swift&format=json&origin=*')
-        // .then(function(response){
-        //     return response.json();
-        // })
-        // .then(function(data){
-        //     console.log(data);
-        //     // return again to put more data for taylor 
-        // })
-    
-
-
+    if ($('#guess').val() === artistX.toLowerCase()){
+        congratz()
+    }else{
+        if(userTurn < 4){
+            userTurn = userTurn+1
+            document.getElementById("track" + userTurn).style.display = "block"
+            console.log(userTurn);
+        }else{
+            idiot()
+        }
+    }
+  
+    return
+};
