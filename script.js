@@ -17,6 +17,11 @@ var playButton = $('#play');
 var trackList = $('.track');
 var userInput = $('#guess');
 var enterBtn = $('#enter-button');
+var artists = ['theweeknd', 'taylorswift', 'harrystyles', 'rihanna', 'beyonce']
+var artistX = artists[Math.floor(Math.random()*artists.length)];
+
+console.log(artistX)
+console.log(artists)
 
 userInput = JSON.stringify(userInput);
 
@@ -24,7 +29,7 @@ userInput = JSON.stringify(userInput);
 $('#play').on('click', function(){
     $('#play').text("▐▐ Play!");
 
-fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=taylorswift&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
+fetch(`https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${artistX}&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json`)
 .then(function(response){
     return response.json();
 })
@@ -47,14 +52,14 @@ fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=tayl
 $('#enter-button').on("click", taylorSwiftBtn)
 
 function taylorSwiftBtn(){
-    if ($('#guess').val() === "Taylor Swift"){
-        theWeeknd();
-    } else if ($('#guess').val() === "The Weeknd"){
-        harryStyles();
-    }else if ($('#guess').val() === "Harry Styles"){
-        rihanna();
-    }else if ($('#guess').val() === "Rihanna"){
-        beyonce();
+    if ($('#guess').val() == "Taylor Swift"){
+        artistGen();
+    } else if ($('#guess').val() == "The Weeknd"){
+        artistGen();
+    }else if ($('#guess').val() == "Harry Styles"){
+        artistGen();
+    }else if ($('#guess').val() == "Rihanna"){
+        artistGen();
     }else {
         // fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=Taylor%20Swift&format=json&origin=*')
         // .then(function(response){
@@ -70,8 +75,8 @@ function taylorSwiftBtn(){
 };
 
 
-function theWeeknd(){
-    fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=theweeknd&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
+function artistGen(){
+    fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${artist}&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
 .then(function(response){
     return response.json();
 })
@@ -91,62 +96,60 @@ function theWeeknd(){
 }
 
 
-function harryStyles(){
-    fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=harrystyles&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    console.log(data);
-        for (i=0; i<4; i++){
-        var firstTrack = data.toptracks.track[i].name;
-        console.log(firstTrack);
+// function harryStyles(){
+//     fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=harrystyles&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
+// .then(function(response){
+//     return response.json();
+// })
+// .then(function(data){
+//     console.log(data);
+//         for (i=0; i<4; i++){
+//         var firstTrack = data.toptracks.track[i].name;
+//         console.log(firstTrack);
           
-        trackList[i].innerHTML = firstTrack;
-        console.log(trackList);
-        }
+//         trackList[i].innerHTML = firstTrack;
+//         console.log(trackList);
+//         }
 
-})
-.catch(error => window.alert("Oops! Something wrong"));
-}
+// })
+// .catch(error => window.alert("Oops! Something wrong"));
+// }
 
-function rihanna(){
-    fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=rihanna&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    console.log(data);
-        for (i=0; i<4; i++){
-        var firstTrack = data.toptracks.track[i].name;
-        console.log(firstTrack);
+// function rihanna(){
+//     fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=rihanna&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
+// .then(function(response){
+//     return response.json();
+// })
+// .then(function(data){
+//     console.log(data);
+//         for (i=0; i<4; i++){
+//         var firstTrack = data.toptracks.track[i].name;
+//         console.log(firstTrack);
           
-        trackList[i].innerHTML = firstTrack;
-        console.log(trackList);
-        }
+//         trackList[i].innerHTML = firstTrack;
+//         console.log(trackList);
+//         }
 
-})
-.catch(error => window.alert("Oops! Something wrong"));
-}
+// })
+// .catch(error => window.alert("Oops! Something wrong"));
+// }
 
-function beyonce(){
-    fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=beyonce&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
-.then(function(response){
-    return response.json();
-})
-.then(function(data){
-    console.log(data);
-        for (i=0; i<4; i++){
-        var firstTrack = data.toptracks.track[i].name;
-        console.log(firstTrack);
+// function beyonce(){
+//     fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=beyonce&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
+// .then(function(response){
+//     return response.json();
+// })
+// .then(function(data){
+//     console.log(data);
+//         for (i=0; i<4; i++){
+//         var firstTrack = data.toptracks.track[i].name;
+//         console.log(firstTrack);
           
-        trackList[i].innerHTML = firstTrack;
-        console.log(trackList);
-        }
+//         trackList[i].innerHTML = firstTrack;
+//         console.log(trackList);
+//         }
 
-})
-.catch(error => window.alert("Oops! Something wrong"));
-}
-
+// })
+// .catch(error => window.alert("Oops! Something wrong"));
 
 
