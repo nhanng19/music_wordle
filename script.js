@@ -1,5 +1,7 @@
+
+
 // ARRAY OF ARTIST NEED TO MATCH THE NAME IN THE API -- for example if we used harrystyles or taylorswift the answer will be wrong
-var artists = ['theweeknd', 'taylorswift', 'harrystyles', 'rihanna', 'beyonce']
+var artists = ['the weeknd', 'taylor swift', 'harry styles', 'rihanna', 'beyonce']
 var artistX = artists[Math.floor(Math.random()*artists.length)];
 console.log(artists);
 console.log(artistX);
@@ -29,57 +31,40 @@ function playBtn() {
     })
     .then(function(data){
         console.log(data);
-        localStorage.setItem('saveartist', artistX);
             for (i=0; i<4; i++){
-                var firstTrack = data.toptracks.track[i].name;
-                console.log(firstTrack);
-                // document.getElementById("track" + i).innerHTML = data.toptracks.track[i].name
-                trackList[i].innerHTML = firstTrack;
-                console.log(trackList);
+                // var firstTrack = data.toptracks.track[i].name;
+                // console.log(firstTrack);
+                document.getElementById("track" + i).innerHTML = data.toptracks.track[i].name
+                // trackList[i].innerHTML = firstTrack;
+                // console.log(trackList);
             }
             document.getElementById("track1").style.display = "block"
     })
     .catch(error => window.alert("Oops! Something wrong"));
 };
 
-$('#enter-button').on("click", guessBtn);
-// // We need to change these functions for when you get the right answer or wrong answer LINE 47-51
+$('#enter-button').on("click", guessBtn)
+// We need to change these functions for when you get the right answer or wrong answer LINE 47-51
 function congratz(){
-    alert("congratz");
+    alert("congratz")
 }
 
 function idiot(){
-    alert("you failed to guess the artist");
+    alert("you failed to guess the artist")
 }
 
 function guessBtn(){
-        var result = ["theweeknd', 'taylorswift', 'harrystyles', 'rihanna', 'beyonce"];
-        var answer = $('#guess').val();
-        localStorage.setItem('userInput', answer);
-        for (i=0; i<result.length; i++){
-            var saveArtist = localStorage.getItem('saveartist');
-            if (saveArtist == result[i]){
-                var theResult = result[i];
-                console.log(theResult);
-            }  
-        }
-        var userInputSlice = localStorage.getItem('userInput');
-        userInputSlice = userInputSlice.replace(" ", '').toLowerCase();
-        if (userInputSlice == theResult){
-            congratz();
+    if ($('#guess').val() === artistX.toLowerCase()){
+        congratz()
+    }else{
+        if(userTurn < 4){
+            userTurn = userTurn+1
+            document.getElementById("track" + userTurn).style.display = "block"
+            console.log(userTurn);
+        }else{
+            idiot()
         }
     }
-    //     }else{
-    //         if(userTurn < 4){
-    //         userTurn = userTurn+1
-    //         document.getElementById("track" + userTurn).style.display = "block"
-    //         console.log(userTurn);
-    //         }else{
-    //         idiot()
-    //         }
-    //     }
   
-    // return
-// };
-
-        
+    return
+};
