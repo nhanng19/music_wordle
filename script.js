@@ -31,6 +31,7 @@ function playBtn() {
     })
     .then(function(data){
         console.log(data);
+        localStorage.setItem('saveartist', artistX);
             for (i=0; i<4; i++){
                 // var firstTrack = data.toptracks.track[i].name;
                 // console.log(firstTrack);
@@ -54,8 +55,23 @@ function idiot(){
 }
 
 function guessBtn(){
-    if ($('#guess').val() === artistX.toLowerCase()){
-        congratz()
+    var result = ['the weeknd', 'taylor swift', 'harry styles', 'rihanna', 'beyonce'];
+    var answer = $('#guess').val();
+    localStorage.setItem('userInput', answer);
+    for (i=0; i<result.length; i++){
+        var saveArtist = localStorage.getItem('saveartist');
+        console.log(saveArtist);
+        console.log(result[i]);
+        if (saveArtist == result[i]){
+            var theResult = result[i];
+            console.log(theResult);
+        }  
+    }
+    var userInputSlice = localStorage.getItem('userInput');
+    userInputSlice = userInputSlice.toLowerCase();
+    if (userInputSlice == theResult){
+        alert("no way");
+
     }else{
         if(userTurn < 4){
             userTurn = userTurn+1
