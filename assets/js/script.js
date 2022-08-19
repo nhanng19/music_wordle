@@ -48,7 +48,7 @@ $('#enter-button').on("click", guessBtn)
 
 
 function guessBtn(){
-    if ($('#guess').val() === artistX.toLowerCase() || $('#guess').val() === artistX){
+    if ($('#guess').val().toLowerCase() === artistX.toLowerCase() || $('#guess').val().toLowerCase() === artistX.toLowerCase()){
         right.play();
         feedback.innerHTML = "Correct! It's " + artistX + "!"
         restartBtn.style.display = "inline-block";
@@ -137,18 +137,35 @@ document.addEventListener("keydown", function(e){
 
 
 var url = "https://en.wikipedia.org/w/api.php"; 
+function removeSpace(str){
+  var strArray = str.split(" ")
+  var str2 = ""
+  for (let index = 0; index < strArray.length; index++) {
+    const element = strArray[index];
+    if (index < strArray.length - 1) {
+      str2 = str2 + element + "%20"
+    } else {
+      str2= str2 + element
+    }
+  console.log(element)
+  }
+  console.log(strArray)
+  console.log(str2)
+  return str2
+}
+
 
 
 
 var params = {
     action: "query",
     prop: "pageimages",
-    titles: `The Weekend`,
+    titles: `${removeSpace(artistX)}`,
     format: "json",
     piprop: "original",
 
 };
-
+console.log(params)
 url = url + "?origin=*";
 Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
 console.log(url)
@@ -156,11 +173,11 @@ fetch(url)
     .then(function(response){return response.json();})
     .then(function(response) {
         var responseQuery = response.query.pages;
-        console.log(responseQuery)
-        var pages = response.query.pages[responseQuery].original.source;
-        console.log(pages);
-        document.querySelector("#img1").src = pages;
-        
 
-    })
+        console.log(responseQuery);
+        var test1 = Object.keys(responseQuery)
+        var pages = response.query.pages[test1[0]].original.source;
+        console.log(pages);
+        document.querySelector("#img").src = pages;
+        })
     .catch(function(error){console.log(error);});
