@@ -27,7 +27,7 @@ var url = "https://en.wikipedia.org/w/api.php";
 var params = {
     action: "query",
     prop: "pageimages",
-    titles: "Taylor Swift",
+    titles: "The Weekend",
     format: "json",
     piprop: "original",
 
@@ -39,50 +39,15 @@ Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];}
 fetch(url)
     .then(function(response){return response.json();})
     .then(function(response) {
-        var pages = response.query.pages;
-        console.log(pages)
-        // for (var page in pages) {
-        //     console.log(page.thumbnail);
-            // for (var img of pages[page].thumbnail) {
-            //     console.log(img);
-                // document.querySelector("#img1").src = img.title;
-            // }
-        // }
+        var responseQuery = response.query.pages;
+        console.log(responseQuery);
+        var pages = response.query.pages[responseQuery].original.source;
+        console.log(pages);
+        document.querySelector("#img1").src = pages;
+        
+
     })
     .catch(function(error){console.log(error);});
-
-// var reader = new FileReader();
-// reader.readAsDataURL(blob);
-// reader.onloadend = function() {
-//     var base64data = reader.result;
-//     console.log(base64data);
-// }
-
-// function blobToBase64(blob) {
-//     return new Promise((resolve, _) => {
-//         const reader = new FileReader();
-//         reader.onloadend = () => resolve(reader.result);
-//         reader.readAsDataURL(blob);
-//     });
-// }
-
-
-
-// fetch(taylorSwiftImg)
-//     .then(response => response.blob())
-//     .then(imageBlob => {
-//         console.log(taylorSwiftImg);
-//         var imageObjecturl = URL.createObjectURL(imageBlob);
-//         console.log(imageObjecturl);
-//         document.querySelector("#img1").src = imageObjecturl;
-//     });
-
-
-
-
-
-
-
 
 
 
