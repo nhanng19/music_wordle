@@ -138,10 +138,12 @@ document.addEventListener("keydown", function(e){
 
 var url = "https://en.wikipedia.org/w/api.php"; 
 
+
+
 var params = {
     action: "query",
     prop: "pageimages",
-    titles: "The Weekend",
+    titles: `The Weekend`,
     format: "json",
     piprop: "original",
 
@@ -149,12 +151,12 @@ var params = {
 
 url = url + "?origin=*";
 Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
-
+console.log(url)
 fetch(url)
     .then(function(response){return response.json();})
     .then(function(response) {
         var responseQuery = response.query.pages;
-        console.log(responseQuery);
+        console.log(responseQuery)
         var pages = response.query.pages[responseQuery].original.source;
         console.log(pages);
         document.querySelector("#img1").src = pages;
