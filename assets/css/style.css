@@ -5,13 +5,8 @@ html {
 }
 
 
-.keys {
-    font-family: "212 Keyboard";
-    font-size: 50px;
-    font-weight: medium;
-}
 
-#instr{
+#instrc{
     text-align: left; 
     position: absolute;
     left: 50%;
