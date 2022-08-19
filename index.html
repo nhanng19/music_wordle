@@ -5,58 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Music Wordle</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="http://fonts.cdnfonts.com/css/212-keyboard" rel="stylesheet">
     <link href='./assets/css/style.css' rel="stylesheet">
   </head>
   <body id = "background">
-  <div id="section">
-    <div class="container">
-      <h3 class="title">
-        <img src = "./assets/img/jingle.gif">
-      </h3>
-      <button id = "play" class="button is-link is-large is-warning has-text-weight-medium"><h1>▶Play!</h1></button>
-    </div>
 
-    <div class = "section">
-      <h1 class = "title">It's like Wordle, but for music.</h1>
+    <div id="section">
+      <div class="container">
+        <h3 class="title">
+          <img src = "./assets/img/jingle.gif" alt = "jingle logo music guessing game">
+        </h3>
+        <button id = "play" class="button is-link is-large is-warning has-text-weight-medium"><h1>▶Play!</h1></button>
+      </div>
 
+      <div class = "section">
+        <h1 class = "title">It's like Wordle, but for music.</h1>
+      </div>
+      <div class = card-content id = instr>
+        <h1><span class = "keys">w</span> to play</h1>
+        <h1><span class = "keys">a</span> to guess</h1>
+        <h1><span class = "keys">ç</span>+<span class = "keys">R</span>to replay/shuffle</h1>
+      </div> 
     </div>
-    </div>
-    
-     
-   
-  <div id = "second">   
-    <div class="field"> 
-        <div class="control">
-          <h3 class="title">
-        <img src = "./assets/img/jingle.gif">
-      </h3>
-          <input class="input is-rounded is-medium" id="guess" type="text" placeholder="Know who? Search for artist.">
-          <button class="button is-danger is-rounded is-medium has-background-warning has-text-black has-text-weight-medium" id="enter-button">Submit</button>
-          <a href="index.html"><button class = "button is-danger is-rounded is-medium has-background-warning has-text-black has-text-weight-bold" id = "restart">↻</button></a>
-    </div>
-
-</div>
-
-
-<div class="card">
-  <div class="card-content">
-      <div class = "title" id = "feedback">Who sang this song?</div>
-      <ul class= "track box has-background-black has-text-white has-text-weight-medium is-size-6" id="track"></ul>
-      <ul style="display: none" class="track box has-background-black has-text-white has-text-weight-medium is-size-6" id = "track1"></ul>
-      <ul style = "display: none" class="track box has-background-black has-text-white has-text-weight-medium is-size-6" id = "track2"></ul>
-      <ul style = "display: none" class="track box has-background-black has-text-white has-text-weight-medium is-size-6" id = "track3"></ul>
-    </div>
-  </div>
-<div class="card-image ">
-    <figure id = "track4" style = "display: none" class="image is-3by2">
-      <img class = "img" id = "img" src="https://www.seekpng.com/png/detail/110-1100707_person-avatar-placeholder.png" alt="Person - Avatar Placeholder@seekpng.com">
-    </figure>
+    <div id = "second">   
+      <div class="field"> 
+          <div class="control">
+            <h3 class="title">
+              <img src = "./assets/img/jingle.gif" alt = "jingle logo music guessing game">
+        </h3>
+            <input class="input is-rounded is-medium" id="guess" type="text" placeholder="Know who? Search for artist."  spellcheck="false" >.</input>
+            <button class="button is-danger is-rounded is-medium has-background-warning has-text-black has-text-weight-medium" id="enter-button">Submit</button>
+            <a href="index.html"><button class = "button is-danger is-rounded is-medium has-background-warning has-text-black has-text-weight-bold" id = "restart">↻</button></a>
+          </div>
+      </div>
+      <div class="card">
+          <div class="card-content">
+            <div class = "title" id = "feedback">Who sang this song?</div>
+              <ul class= "track box has-background-black has-text-white has-text-weight-medium is-size-6" id="track"></ul>
+              <ul style="display: none" class="track box has-background-black has-text-white has-text-weight-medium is-size-6" id = "track1"></ul>
+              <ul style = "display: none" class="track box has-background-black has-text-white has-text-weight-medium is-size-6" id = "track2"></ul>
+              <ul style = "display: none" class="track box has-background-black has-text-white has-text-weight-medium is-size-6" id = "track3"></ul>
+          </div>
+      </div>
+      <div class="card-image ">
+          <figure id = "track4" style = "display: none" class="image is-4by3">
+            <img class = "img" id = "img" src="https://www.seekpng.com/png/detail/110-1100707_person-avatar-placeholder.png" alt="Person - Avatar Placeholder@seekpng.com">
+          </figure>
       </div>
     </div>
-
-
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>  
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script type="text/javascript" src="./assets/js/script.js"></script>
   </body>
 </html>
+  
+
+
+  
