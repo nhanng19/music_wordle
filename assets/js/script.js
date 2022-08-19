@@ -134,3 +134,31 @@ document.addEventListener("keydown", function(e){
       start.style.display = "none";
     }
 }})
+
+
+var url = "https://en.wikipedia.org/w/api.php"; 
+
+var params = {
+    action: "query",
+    prop: "pageimages",
+    titles: "The Weekend",
+    format: "json",
+    piprop: "original",
+
+};
+
+url = url + "?origin=*";
+Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
+
+fetch(url)
+    .then(function(response){return response.json();})
+    .then(function(response) {
+        var responseQuery = response.query.pages;
+        console.log(responseQuery);
+        var pages = response.query.pages[responseQuery].original.source;
+        console.log(pages);
+        document.querySelector("#img1").src = pages;
+        
+
+    })
+    .catch(function(error){console.log(error);});
