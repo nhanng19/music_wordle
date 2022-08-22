@@ -35,7 +35,7 @@ var artistX = artists[Math.floor(Math.random()*artists.length)];
 
 targetDiv.style.display = "none";
 
-// Loading game and hide landing page 
+// Load game and hide landing page 
 
 playButton.onclick = function () {
     if (targetDiv.style.display == "none") {
@@ -102,8 +102,9 @@ function guessBtn(){
           spread: 120,
           startVelocity: 45,
         });
+        saveScore();
     }else{
-        if(userTurn < 1){
+        if(userTurn < 1){    // shake and reveal another song as hint
             userTurn++
             document.getElementById("track" + userTurn).style.display = "block"
             document.getElementById("track" + userTurn).style.animation = "shake 0.5s"
@@ -124,7 +125,7 @@ function guessBtn(){
             feedback.innerHTML = "Third time's the charm!"
             wrong.play()
            
-        } else if (userTurn < 4){
+        } else if (userTurn < 4){  // shake and reveal artist's picture as hint
             userTurn++
             document.getElementById("track" + userTurn).style.display = "block";
             document.getElementById("track" + userTurn).style.animation = "shake 0.5s"
@@ -166,6 +167,23 @@ fetch(url)
         document.querySelector("#img").src = pages;
         });
 
+// Track how many wins user has
+
+var counter = localStorage.getItem('counter') || 0;
+
+function saveScore() {
+    counter ++; 
+    window.localStorage.setItem('counter', JSON.stringify(counter)); 
+}
+
+// Display how many wins
+
+function showScore() {
+  if (counter > 0) {
+    document.getElementById("counter").innerHTML = "You've guessed " + localStorage.getItem("counter") + " artists "
+  }
+} 
+showScore();
 
 // Add event listener to check answer when user press enter
 
