@@ -9,7 +9,7 @@ employers. Our application must use at least two server-side APIs and store pers
 
 
 ## The Concept 🎤
-We wanted to find a interactive way to use data from an API that worked with music specifically, was inspired by the recent game wordle. Small music themed game that uses the last.fm api to pull a top track list, and wikipedia’s mediawiki api to pull a artist photo, so that users can play by guessing the artist who performed a song name that is randomly generated.
+We wanted to find a interactive way to use data from an API that worked with music specifically, was inspired by the recent game wordle. Small music themed game that uses the last.fm API to pull a top track list, and Wikipedia’s MediaWiki Api to pull a artist photo, so that users can play by guessing the artist who performed a song name that is randomly generated.
 
 ## User Story 📖
 
