@@ -61,9 +61,9 @@ CSS File
 ```
 Specific functions in JavaScript file
 
-```
-// Loadd game and hide landing page 
+Load game and hide landing page 
 
+```
 playButton.onclick = function () {
     if (targetDiv.style.display == "none") {
       targetDiv.style.display = "block";
@@ -71,9 +71,11 @@ playButton.onclick = function () {
       document.getElementById("guess").select();
     }
   };
+```
 
-// Fetch 4 top tracks from a random artist and appends on list
+Fetch 4 top tracks from a random artist and appends on list
 
+```
 fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist='+artistX+'&limit=4&api_key=3fa1d67efdf9fbda6b5c07411588e640&format=json')
 .then(function(response){
     return response.json();
@@ -84,9 +86,11 @@ fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist='+ar
         trackList[i].innerHTML = firstTrack;
         }
       })  
+```
 
-// Fetch artist's image from mediaWiki API 
+Fetch artist's image from mediaWiki API 
 
+```
 var url = "https://en.wikipedia.org/w/api.php"; 
 var noSpace = artistX.replace(/ /g,"%20")
 var params = {
@@ -109,9 +113,11 @@ fetch(url)
 
         document.querySelector("#img").src = pages;
         });
+```
 
-// Check answer and provide feedback based on users' guess and turn
+Check answer and provide feedback based on users' guess and turn
 
+```
 function guessBtn(){
     document.getElementById('guess').focus() 
     if ($('#guess').val().toLowerCase() === artistX.toLowerCase() || $('#guess').val().toLowerCase() === artistX.toLowerCase()){
@@ -129,9 +135,11 @@ function guessBtn(){
     }   
   return
 };
+```
 
-// Track how many wins user has
+Track how many wins user has
 
+```
 var counter = localStorage.getItem('counter') || 0;
 
 function saveScore() {
