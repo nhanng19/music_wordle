@@ -5,6 +5,16 @@ html {
 }
 
 
+#counter {
+    font-size: 22px;
+    color: black; 
+    white-space: nowrap;
+    position: absolute;
+    bottom: 120%;
+    left: 50%; 
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
 
 #instrc{
     text-align: left; 
