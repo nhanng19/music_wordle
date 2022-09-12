@@ -52,7 +52,7 @@ CSS file, Bulma Library, Confetti JS, Javascript File, and jQuery Library
 
 CSS File
 
-```css
+```
 - Pink background
 - @keyframes animation for incorrect answers
 - Stylized buttons
