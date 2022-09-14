@@ -1,4 +1,5 @@
 // Define variables for elements and user interface
+
 var playButton = document.getElementById("play");
 var trackList = $('.track');
 var userInput = document.getElementById("guess");
@@ -9,6 +10,7 @@ var start = document.getElementById("section");
 var restartBtn = document.getElementById("restart");
 var userTurn = 0; 
 var card = document.querySelector(".card")
+
 // Feedback audio
  
 var right = new Audio("assets/js/correct.wav")
@@ -62,81 +64,101 @@ fetch('https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist='+ar
 
 $('#enter-button').on("click", guessBtn)
 
+// Shakes answer when user guess wrong
+
+function shakeCard(){
+  document.getElementById("track" + userTurn).style.animation = "shake 0.5s";
+};
+
+// Reveal next hint 
+
+function revealCard(){
+  document.getElementById("track" + userTurn).style.display = "block";
+};
+
+// ConfettiJS
+
+function confettiJs(){
+  var count = 200;
+  var defaults = {
+    origin: { y: 0.7 }
+  };
+  // confetti.js runs when user guess right
+  function fire(particleRatio, opts) {
+    confetti(Object.assign({}, defaults, opts, {
+      particleCount: Math.floor(count * particleRatio)
+    }));
+  }
+  
+  fire(0.25, {
+    spread: 26,
+    startVelocity: 55,
+  });
+  fire(0.2, {
+    spread: 60,
+  });
+  fire(0.35, {
+    spread: 100,
+    decay: 0.91,
+    scalar: 0.8
+  });
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 25,
+    decay: 0.92,
+    scalar: 1.2
+  });
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 45,
+  });
+}
+
+// Check user's answers and provide feedback
+
 function guessBtn(){
     document.getElementById('guess').focus() 
     if ($('#guess').val().toLowerCase() === artistX.toLowerCase() || $('#guess').val().toLowerCase() === artistX.toLowerCase()){
         right.play();
-        feedback.innerHTML = "Correct! It's " + artistX + "!"
+        confettiJs();
+        feedback.innerHTML = "Correct! It's " + artistX + "!";
         restartBtn.style.display = "inline-block";
         track4.style.display = "block";
-        var count = 200;
-        var defaults = {
-          origin: { y: 0.7 }
-        };
-        // confetti.js runs when user guess right
-        function fire(particleRatio, opts) {
-          confetti(Object.assign({}, defaults, opts, {
-            particleCount: Math.floor(count * particleRatio)
-          }));
-        }
-        
-        fire(0.25, {
-          spread: 26,
-          startVelocity: 55,
-        });
-        fire(0.2, {
-          spread: 60,
-        });
-        fire(0.35, {
-          spread: 100,
-          decay: 0.91,
-          scalar: 0.8
-        });
-        fire(0.1, {
-          spread: 120,
-          startVelocity: 25,
-          decay: 0.92,
-          scalar: 1.2
-        });
-        fire(0.1, {
-          spread: 120,
-          startVelocity: 45,
-        });
         saveScore();
     }else{
         if(userTurn < 1){    // shake and reveal another song as hint
             userTurn++
-            document.getElementById("track" + userTurn).style.display = "block"
-            document.getElementById("track" + userTurn).style.animation = "shake 0.5s"
+            revealCard();
+            shakeCard();
             feedback.innerHTML = "Not quite! Here's a hint.";
             wrong.play()
            
         } else if (userTurn < 2){
             userTurn++
-            document.getElementById("track" + userTurn).style.display = "block";
-            document.getElementById("track" + userTurn).style.animation = "shake 0.5s"
-            feedback.innerHTML = "Hmm. Here's another one."
-            wrong.play()
+            revealCard();
+            shakeCard();
+            feedback.innerHTML = "Hmm. Here's another one.";
+            wrong.play();
            
         } else if (userTurn < 3){
             userTurn++
-            document.getElementById("track" + userTurn).style.display = "block";
-            document.getElementById("track" + userTurn).style.animation = "shake 0.5s"
-            feedback.innerHTML = "Third time's the charm!"
-            wrong.play()
+            revealCard();
+            shakeCard();
+            feedback.innerHTML = "Third time's the charm!";
+            wrong.play();
            
         } else if (userTurn < 4){  // shake and reveal artist's picture as hint
             userTurn++
-            document.getElementById("track" + userTurn).style.display = "block";
-            document.getElementById("track" + userTurn).style.animation = "shake 0.5s"
-            feedback.innerHTML = "Look familiar?"
-            wrong.play()
+            revealCard();
+            shakeCard();
+            feedback.innerHTML = "Look familiar?";
+            wrong.play();
        
         } else if (userTurn < 5){
-            feedback.innerHTML = "Unlucky!  It's " + artistX + "!"
-            document.getElementById("track" + userTurn).style.animation = "shake 0.5s"
+            feedback.innerHTML = "Unlucky!  It's " + artistX + "!";
+            shakeCard();
             restartBtn.style.display = "inline-block";
-            over.play()
+            over.play();
         }
     }   
   return
@@ -174,7 +196,7 @@ var counter = localStorage.getItem('counter') || 0;
 function saveScore() {
     counter ++; 
     window.localStorage.setItem('counter', JSON.stringify(counter)); 
-}
+};
 
 // Display how many wins
 
