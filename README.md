@@ -1,5 +1,4 @@
-# Project_1
-BootCamp Project #1 - Jingle (Music Wordle)
+# Jingle (Music Wordle)
 
 ## The Challenge 🔐
 Our client request us to build an application using the knowledge we've learned over the past six modules to create a real-world-front-end application that we can show our potential
